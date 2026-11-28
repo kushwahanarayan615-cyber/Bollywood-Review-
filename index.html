@@ -1,135 +1,29 @@
 <!DOCTYPE html>
-<html lang="hi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bollywood Buzz</title>
+<html lang="hi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0d0d12"><title>Bollywood Review</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#0b0b12;color:white;font-family:Arial,sans-serif}
-header{background:#171722;padding:18px;position:sticky;top:0;z-index:3;border-bottom:1px solid #333}
-.brand{font-size:25px;font-weight:bold;color:#ff5265}
-.brand span{color:white}
-nav{display:flex;gap:18px;overflow:auto;margin-top:16px}
-nav button{border:0;background:none;color:#ddd;white-space:nowrap;font-size:15px}
-.hero{padding:38px 20px;background:linear-gradient(135deg,#3a1028,#17172d,#701d31)}
-.hero h1{font-size:32px;margin-bottom:12px}
-.hero p{line-height:1.6;color:#eee}
-.search{padding:20px}
-.search input{width:100%;padding:15px;border-radius:12px;background:#191925;border:1px solid #383849;color:white;font-size:16px}
-.section{padding:10px 20px 30px}
-.section h2{margin-bottom:20px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.card{background:#191925;border:1px solid #303040;border-radius:14px;overflow:hidden}
-.poster{height:240px;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;font-size:25px;font-weight:bold;letter-spacing:1px;text-shadow:0 3px 8px #000;background:linear-gradient(145deg,#41152c,#151525)}
-.poster small{display:block;font-size:12px;margin-top:12px;color:#ddd}
-.info{padding:13px}
-.info h3{font-size:17px;margin-bottom:8px}
-.meta{font-size:12px;color:#aaa;margin-bottom:8px}
-.rating{color:#ffc857;font-weight:bold;margin-bottom:10px}
-.info p{font-size:13px;color:#ccc;line-height:1.5}
-.reviewBtn{width:100%;padding:11px;margin-top:12px;background:#ff4757;color:white;border:0;border-radius:9px;font-weight:bold}
-.modal{display:none;position:fixed;inset:0;background:#000d;z-index:10;overflow:auto;padding:20px}
-.modalbox{background:#1b1b27;padding:22px;border-radius:16px;max-width:500px;margin:30px auto}
-.modalbox h2{margin:15px 0}
-.modalbox p{color:#ddd;line-height:1.6;margin:10px 0}
-.close{float:right;background:#ff4757;color:white;border:0;padding:9px;border-radius:8px}
-footer{text-align:center;padding:30px;color:#888}
-@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
-</style>
-</head>
-<body>
-<header>
-<div class="brand">🎬 Bollywood <span>Buzz</span></div>
-<nav>
-<button onclick="filter('All')">All Movies</button>
-<button onclick="filter('Action')">Action</button>
-<button onclick="filter('Drama')">Drama</button>
-<button onclick="filter('Comedy')">Comedy</button>
-<button onclick="filter('Romance')">Romance</button>
-</nav>
-</header>
-
-<section class="hero">
-<h1>Bollywood Movies & Reviews</h1>
-<p>Discover movies, explore stories and find your next favourite film.</p>
-<p style="margin-top:15px;color:#ff7184;font-weight:bold">Lights. Camera. Bollywood!</p>
-</section>
-
-<div class="search">
-<input id="search" placeholder="🔍 Search movies or actors..." oninput="render()">
-</div>
-
-<section class="section">
-<h2 id="heading">🔥 Popular Movies</h2>
-<div class="grid" id="movies"></div>
-</section>
-
-<div class="modal" id="modal">
-<div class="modalbox">
-<button class="close" onclick="closeModal()">✕ Close</button>
-<div id="details"></div>
-</div>
-</div>
-
-<footer>🎬 Bollywood Buzz • Made for movie lovers ❤️</footer>
-
+:root{--bg:#0d0d12;--panel:#17171f;--muted:#a4a4b2;--red:#f12b45;--red2:#b20f2d;--line:#282833;--text:#f6f5fa}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding-bottom:80px}header{position:sticky;top:0;background:#0d0d12ee;backdrop-filter:blur(12px);z-index:4;border-bottom:1px solid var(--line);padding:14px 16px}.brand{font-size:23px;font-weight:900;letter-spacing:-.5px}.brand span{color:var(--red)}.sub{color:var(--muted);font-size:12px;margin-top:2px}.wrap{max-width:900px;margin:auto;padding:16px}.hero{border-radius:22px;overflow:hidden;min-height:220px;padding:24px;display:flex;align-items:end;background:linear-gradient(90deg,#101015ee,#10101566),url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1200&q=80') center/cover;box-shadow:0 10px 30px #0005}.hero h1{font-size:32px;line-height:1.05;margin:8px 0}.hero p{color:#ddd;margin:0 0 14px}.tag{display:inline-block;background:var(--red);padding:5px 10px;border-radius:999px;font-size:12px;font-weight:700}.searchrow{display:flex;gap:10px;margin:16px 0}.searchrow input{min-width:0;flex:1;background:var(--panel);border:1px solid var(--line);color:white;padding:13px 14px;border-radius:14px;font-size:15px}.section{display:flex;justify-content:space-between;align-items:center;margin:22px 0 12px}.section h2{font-size:19px;margin:0}.section small{color:var(--muted)}.filters{display:flex;gap:8px;overflow:auto;padding-bottom:5px}.chip{white-space:nowrap;border:1px solid var(--line);background:var(--panel);color:#ddd;padding:9px 13px;border-radius:999px;cursor:pointer}.chip.active{background:var(--red);border-color:var(--red);color:white}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.movie{background:var(--panel);border:1px solid var(--line);border-radius:17px;overflow:hidden;cursor:pointer;transition:.15s}.movie:active{transform:scale(.98)}.poster{height:190px;position:relative;background-size:cover;background-position:center;display:flex;align-items:end}.poster:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#111e,transparent 70%)}.rating{position:absolute;bottom:10px;left:10px;z-index:1;background:#09090bcc;padding:5px 8px;border-radius:9px;font-weight:800;color:#ffd45a;font-size:13px}.movieinfo{padding:12px}.movieinfo h3{margin:0 0 4px;font-size:16px}.meta{font-size:12px;color:var(--muted)}.desc{font-size:13px;color:#c7c7d0;margin-top:8px;line-height:1.4}.actions{display:flex;gap:8px;margin-top:10px}.btn{border:0;border-radius:12px;background:var(--red);color:white;font-weight:700;padding:10px 12px;cursor:pointer}.btn.secondary{background:#292933;color:#ddd}.btn.small{font-size:12px;padding:8px 10px}.empty{text-align:center;padding:40px 15px;color:var(--muted);grid-column:1/-1}.bottom{position:fixed;bottom:0;left:0;right:0;background:#111118f5;backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;justify-content:center;z-index:5}.nav{max-width:900px;width:100%;display:flex;justify-content:space-around;padding:8px}.nav button{background:none;border:0;color:var(--muted);font-size:12px;padding:7px;cursor:pointer}.nav button b{display:block;font-size:19px;margin-bottom:2px}.nav button.active{color:var(--red)}.modal{display:none;position:fixed;inset:0;background:#000b;z-index:9;overflow:auto;padding:18px}.modalbox{max-width:600px;margin:30px auto;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px}.modalbox h2{margin:5px 0 8px}.modalbox input,.modalbox textarea,.modalbox select{width:100%;background:#0d0d12;border:1px solid var(--line);border-radius:12px;color:white;padding:12px;margin:8px 0;font:inherit}.modalbox textarea{min-height:95px}.stars button{background:none;border:0;color:#555;font-size:26px;cursor:pointer}.stars button.selected{color:#ffd45a}.review{background:#101017;border-radius:12px;padding:12px;margin:10px 0;font-size:14px}.close{float:right;background:#292933;color:white;border:0;border-radius:10px;padding:7px 11px;cursor:pointer}.toast{position:fixed;bottom:86px;left:50%;transform:translateX(-50%);background:#292933;color:white;padding:11px 16px;border-radius:12px;display:none;z-index:10}.footer-note{font-size:11px;color:var(--muted);text-align:center;margin:22px 0}@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.poster{height:240px}.hero{min-height:270px}}
+</style></head><body>
+<header><div class="brand">🎬 Bollywood <span>Review</span></div><div class="sub">Watch · Review · Discover Indian Cinema</div></header>
+<main class="wrap"><section class="hero"><div><span class="tag">CINEMA, YOUR WAY</span><h1>Filmon ka asli<br>review.</h1><p>Discover · Rate · Share your opinion</p><button class="btn" onclick="setTab('movies')">Explore Movies ↗</button></div></section>
+<div class="searchrow"><input id="search" placeholder="Movie ya actor search karo…" oninput="render()"><button class="btn" onclick="document.getElementById('search').focus()">⌕</button></div>
+<div class="section"><h2 id="heading">Popular Movies</h2><small id="count"></small></div><div class="filters" id="filters"></div><div class="grid" id="grid"></div><div class="footer-note">Demo app · Reviews and ratings saved on this device</div></main>
+<div class="bottom"><div class="nav"><button class="active" data-tab="home" onclick="setTab('home')"><b>⌂</b>Home</button><button data-tab="movies" onclick="setTab('movies')"><b>🎞</b>Movies</button><button data-tab="reviews" onclick="setTab('reviews')"><b>✍</b>Reviews</button><button data-tab="watchlist" onclick="setTab('watchlist')"><b>♡</b>Watchlist</button></div></div>
+<div class="modal" id="modal"><div class="modalbox"><button class="close" onclick="closeModal()">✕</button><div id="modalcontent"></div></div></div><div class="toast" id="toast"></div>
 <script>
 const films=[
-{title:"Jawan",year:2023,genre:"Action",rating:4.5,cast:"Shah Rukh Khan, Nayanthara",desc:"A thrilling action story of a man determined to correct society's wrongs.",color:"linear-gradient(145deg,#8b1e35,#17152b)"},
-{title:"12th Fail",year:2023,genre:"Drama",rating:4.9,cast:"Vikrant Massey, Medha Shankar",desc:"An inspiring story of struggle, determination and the dream of becoming an IPS officer.",color:"linear-gradient(145deg,#72522b,#201c18)"},
-{title:"Pathaan",year:2023,genre:"Action",rating:4.2,cast:"Shah Rukh Khan, Deepika Padukone",desc:"An agent returns to protect the country from a dangerous threat.",color:"linear-gradient(145deg,#173c65,#111827)"},
-{title:"Laapataa Ladies",year:2024,genre:"Comedy",rating:4.8,cast:"Nitanshi Goel, Pratibha Ranta",desc:"Two brides get accidentally swapped on a train journey and discover their identities.",color:"linear-gradient(145deg,#647c39,#27351e)"},
-{title:"Animal",year:2023,genre:"Action",rating:4.0,cast:"Ranbir Kapoor, Rashmika Mandanna",desc:"A complicated family relationship leads to a violent journey of revenge.",color:"linear-gradient(145deg,#6c2222,#191515)"},
-{title:"Dangal",year:2016,genre:"Drama",rating:4.8,cast:"Aamir Khan, Fatima Sana Shaikh",desc:"A father trains his daughters to become wrestling champions.",color:"linear-gradient(145deg,#73502a,#292016)"},
-{title:"Stree 2",year:2024,genre:"Comedy",rating:4.5,cast:"Shraddha Kapoor, Rajkummar Rao",desc:"A town faces a new supernatural mystery.",color:"linear-gradient(145deg,#53306c,#171525)"},
-{title:"Brahmastra",year:2022,genre:"Action",rating:3.9,cast:"Ranbir Kapoor, Alia Bhatt",desc:"A young man discovers a world of ancient powers.",color:"linear-gradient(145deg,#164e75,#301c56)"},
-{title:"DDLJ",year:1995,genre:"Romance",rating:4.9,cast:"Shah Rukh Khan, Kajol",desc:"Two young lovers try to win the hearts of their families.",color:"linear-gradient(145deg,#9b6731,#40231a)"},
-{title:"Zindagi Na Milegi Dobara",year:2011,genre:"Drama",rating:4.7,cast:"Hrithik Roshan, Farhan Akhtar",desc:"Three friends embark on a road trip that changes their lives.",color:"linear-gradient(145deg,#247b88,#17334a)"}
-];
-
-let current="All";
-
-function render(){
-const q=document.getElementById("search").value.toLowerCase();
-const list=films.filter(f=>(current==="All"||f.genre===current)&&(f.title.toLowerCase().includes(q)||f.cast.toLowerCase().includes(q)));
-document.getElementById("movies").innerHTML=list.map((f,i)=>`
-<div class="card">
-<div class="poster" style="background:${f.color}">
-<div>🎬<br>${f.title}<small>${f.year} • BOLLYWOOD</small></div>
-</div>
-<div class="info">
-<h3>${f.title}</h3>
-<div class="meta">${f.year} • ${f.genre}</div>
-<div class="rating">⭐ ${f.rating}/5</div>
-<p>${f.desc}</p>
-<button class="reviewBtn" onclick="openModal(${films.indexOf(f)})">Read Review</button>
-</div>
-</div>`).join("");
-}
-
-function filter(g){
-current=g;
-document.getElementById("heading").innerText=g==="All"?"🔥 Popular Movies":g+" Movies";
-render();
-}
-
-function openModal(i){
-const f=films[i];
-document.getElementById("details").innerHTML=`
-<h2>${f.title}</h2>
-<p><b>Year:</b> ${f.year}</p>
-<p><b>Genre:</b> ${f.genre}</p>
-<p><b>Cast:</b> ${f.cast}</p>
-<p><b>Rating:</b> ⭐ ${f.rating}/5</p>
-<p><b>Review:</b> ${f.desc}</p>`;
-document.getElementById("modal").style.display="block";
-}
-
-function closeModal(){
-document.getElementById("modal").style.display="none";
-}
-render();
-</script>
-</body>
-</html>
+{id:1,title:'Jawan',year:2023,genre:'Action',rating:7.8,poster:'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=700&q=80',desc:'A high-octane action entertainer with a social message.',cast:'Shah Rukh Khan, Nayanthara'},
+{id:2,title:'12th Fail',year:2023,genre:'Drama',rating:9.0,poster:'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=700&q=80',desc:'An inspiring story of perseverance and a second chance.',cast:'Vikrant Massey, Medha Shankar'},
+{id:3,title:'Pathaan',year:2023,genre:'Action',rating:6.8,poster:'https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=700&q=80',desc:'A spy thriller filled with spectacle and action.',cast:'Shah Rukh Khan, Deepika Padukone'},
+{id:4,title:'Laapataa Ladies',year:2024,genre:'Comedy',rating:8.5,poster:'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=700&q=80',desc:'A charming comedy-drama about identity and independence.',cast:'Nitanshi Goel, Pratibha Ranta'},
+{id:5,title:'Animal',year:2023,genre:'Drama',rating:6.1,poster:'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=700&q=80',desc:'A turbulent family story with intense performances.',cast:'Ranbir Kapoor, Rashmika Mandanna'},
+{id:6,title:'Stree 2',year:2024,genre:'Comedy',rating:7.6,poster:'https://images.unsplash.com/photo-1509248961158-e54f6f6b0a0d?auto=format&fit=crop&w=700&q=80',desc:'Horror and comedy return to a mysterious small town.',cast:'Shraddha Kapoor, Rajkummar Rao'},
+{id:7,title:'Dangal',year:2016,genre:'Drama',rating:8.4,poster:'https://images.unsplash.com/photo-1504450758481-7338eba7524a?auto=format&fit=crop&w=700&q=80',desc:'A father trains his daughters to become wrestling champions.',cast:'Aamir Khan, Fatima Sana Shaikh'},
+{id:8,title:'Zindagi Na Milegi Dobara',year:2011,genre:'Drama',rating:8.2,poster:'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=700&q=80',desc:'Three friends rediscover life during a road trip.',cast:'Hrithik Roshan, Farhan Akhtar'}];
+let tab='home',genre='All',stars=0;const watch=()=>JSON.parse(localStorage.getItem('br_watch')||'[]');const reviews=()=>JSON.parse(localStorage.getItem('br_reviews')||'{}');
+function saveWatch(x){let a=watch();a=a.includes(x)?a.filter(i=>i!==x):[...a,x];localStorage.setItem('br_watch',JSON.stringify(a));render();toast(a.includes(x)?'Watchlist mein add ho gayi ❤️':'Watchlist se hata di');}
+function setTab(t){tab=t;document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===t));document.getElementById('heading').textContent={home:'Popular Movies',movies:'Explore Movies',reviews:'Community Reviews',watchlist:'My Watchlist'}[t]||'Movies';render();}
+function filtersRender(){let gs=['All','Action','Drama','Comedy'];document.getElementById('filters').innerHTML=(tab==='watchlist'||tab==='reviews'?'':gs.map(g=>`<button class="chip ${genre===g?'active':''}" onclick="genre='${g}';render()">${g}</button>`).join(''));}
+function render(){filtersRender();let q=document.getElementById('search').value.toLowerCase();let list=films.filter(f=>(!q||f.title.toLowerCase().includes(q)||f.cast.toLowerCase().includes(q))&&(genre==='All'||f.genre===genre));if(tab==='watchlist')list=list.filter(f=>watch().includes(f.id));if(tab==='reviews')list=list.filter(f=>reviews()[f.id]?.length);let grid=document.getElementById('grid');document.getElementById('count').textContent=list.length+' films';if(!list.length){grid.innerHTML='<div class="empty">'+(tab==='watchlist'?'Watchlist khaali hai. ♡':'Koi movie nahi mili.')+'</div>';return;}grid.innerHTML=list.map(f=>`<article class="movie" onclick="details(${f.id})"><div class="poster" style="background-image:url('${f.poster}')"><div class="rating">★ ${f.rating}/10</div></div><div class="movieinfo"><h3>${f.title}</h3><div class="meta">${f.year} · ${f.genre}</div><div class="desc">${f.desc}</div><div class="actions"><button class="btn small" onclick="event.stopPropagation();details(${f.id})">Review</button><button class="btn secondary small" onclick="event.stopPropagation();saveWatch(${f.id})">${watch().includes(f.id)?'♥ Saved':'♡ Save'}</button></div></div></article>`).join('');}
+function details(id){let f=films.find(x=>x.id===id),r=reviews()[id]||[];stars=0;document.getElementById('modalcontent').innerHTML=`<div class="poster" style="height:230px;border-radius:14px;background-image:url('${f.poster}')"></div><h2>${f.title}</h2><div class="meta">${f.year} · ${f.genre} · ★ ${f.rating}/10</div><p>${f.desc}</p><p class="meta">Cast: ${f.cast}</p><div class="actions"><button class="btn" onclick="saveWatch(${id})">${watch().includes(id)?'♥ Saved to Watchlist':'♡ Add Watchlist'}</button></div><h3>Write your review</h3><div class="stars" id="stars">${[1,2,3,4,5].map(n=>`<button onclick="pickStar(${n})" id="s${n}">★</button>`).join('')}</div><textarea id="reviewtext" placeholder="Is movie ke baare mein apni rai likho..."></textarea><button class="btn" onclick="submitReview(${id})">Submit Review</button><h3>Reviews (${r.length})</h3>${r.length?r.map(x=>`<div class="review"><b>★ ${x.stars}/5</b><div>${escapeHtml(x.text)}</div><small class="meta">${x.date}</small></div>`).join(''):'<div class="meta">Abhi koi review nahi. Pehla review tum likho!</div>'}`;document.getElementById('modal').style.display='block';}
+function pickStar(n){stars=n;for(let i=1;i<=5;i++)document.getElementById('s'+i).classList.toggle('selected',i<=n)}function submitReview(id){let text=document.getElementById('reviewtext').value.trim();if(!stars||!text){toast('Rating aur review dono likho');return;}let a=reviews();a[id]=a[id]||[];a[id].unshift({stars,text,date:new Date().toLocaleDateString()});localStorage.setItem('br_reviews',JSON.stringify(a));toast('Review save ho gaya! ✨');details(id);render();}function closeModal(){document.getElementById('modal').style.display='none'}function toast(t){let x=document.getElementById('toast');x.textContent=t;x.style.display='block';setTimeout(()=>x.style.display='none',2000)}function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});render();
+</script></body></html>
